@@ -1,0 +1,48 @@
+{
+  "equipment": [
+    {"id": "gerobak", "name": "Gerobak", "options": [
+      {"id": "sewa", "label": "Sewa harian", "buy": 0, "daily": 15000, "cap": 22, "desc": "Rp0 sekarang, Rp15.000 per hari. Muat 22 porsi."},
+      {"id": "milik", "label": "Beli bekas", "buy": 250000, "daily": 0, "cap": 36, "desc": "Rp250.000. Milik sendiri, muat 36 porsi."}
+    ]},
+    {"id": "kompor", "name": "Kompor + gas", "options": [
+      {"id": "pinjam", "label": "Pinjam tetangga", "buy": 0, "speed": 0.7, "desc": "Gratis, tapi api kecil: masak lebih lambat."},
+      {"id": "milik", "label": "Beli kompor + tabung", "buy": 140000, "speed": 1.0, "desc": "Rp140.000. Api stabil."}
+    ]},
+    {"id": "wajan", "name": "Wajan & alat masak", "options": [
+      {"id": "seadanya", "label": "Alat seadanya", "buy": 0, "batch": 1, "desc": "Satu wajan kecil: satu porsi per kali masak."},
+      {"id": "lengkap", "label": "Wajan besar + perlengkapan", "buy": 60000, "batch": 2, "desc": "Rp60.000. Dua porsi sekali masak."}
+    ]},
+    {"id": "hp", "name": "HP untuk QRIS", "options": [
+      {"id": "lama", "label": "Pakai HP lama", "buy": 0, "reliab": 0.7, "desc": "Layar retak, baterai boros. QRIS sering gagal."},
+      {"id": "bekas", "label": "Beli HP bekas layak", "buy": 250000, "reliab": 0.97, "desc": "Rp250.000. QRIS andal, baterai awet."}
+    ]},
+    {"id": "powerbank", "name": "Powerbank", "options": [
+      {"id": "tidak", "label": "Tidak beli", "buy": 0, "desc": "Baterai HP bisa habis sebelum tutup."},
+      {"id": "ada", "label": "Beli powerbank", "buy": 80000, "desc": "Rp80.000. HP tahan sampai malam."}
+    ]},
+    {"id": "catat", "name": "Pencatatan", "options": [
+      {"id": "buku", "label": "Buku tulis + pulpen", "buy": 10000, "accuracy": 0.9, "desc": "Rp10.000. Catatan bisa meleset."},
+      {"id": "tidak", "label": "Tidak mencatat", "buy": 0, "accuracy": 0.6, "desc": "Gratis, tapi tidak tahu uang ke mana."},
+      {"id": "aplikasi", "label": "Aplikasi di HP bekas", "buy": 0, "accuracy": 1.0, "requires": {"hp": "bekas"}, "desc": "Otomatis, akurat. Butuh HP bekas layak."}
+    ]}
+  ],
+  "ingredients": [
+    {"id": "mie", "name": "Mie", "price": 2000, "perish": 0.0},
+    {"id": "telur", "name": "Telur", "price": 2000, "perish": 0.3},
+    {"id": "bumbu", "name": "Bumbu & minyak", "price": 1500, "perish": 0.0},
+    {"id": "sayur", "name": "Sayur", "price": 500, "perish": 1.0},
+    {"id": "kemasan", "name": "Kemasan", "price": 500, "perish": 0.0}
+  ],
+  "suppliers": [
+    {"id": "bejo", "name": "Pak Bejo", "price_mult": 0.9, "quality": 0.72, "desc": "Murah, kualitas sedang."},
+    {"id": "titin", "name": "Bu Titin", "price_mult": 1.12, "quality": 1.0, "desc": "Segar dan konsisten, lebih mahal."}
+  ],
+  "spots": [
+    {"id": "sd", "name": "Depan SD Harapan", "desc": "Ramai sekali saat pulang sekolah (12.00-13.00), sepi di luar itu.",
+     "profile": {"10": 4, "11": 8, "12": 34, "13": 22, "14": 6, "15": 6, "16": 12, "17": 8, "18": 3, "19": 2, "20": 1}},
+    {"id": "kantor", "name": "Depan Kantor", "desc": "Makan siang ramai (11.00-14.00), cukup ramai sore.",
+     "profile": {"10": 3, "11": 16, "12": 30, "13": 20, "14": 8, "15": 5, "16": 6, "17": 14, "18": 12, "19": 5, "20": 2}},
+    {"id": "ojol", "name": "Pangkalan Ojol", "desc": "Stabil sepanjang hari, puncaknya malam (18.00-21.00).",
+     "profile": {"10": 6, "11": 8, "12": 12, "13": 9, "14": 8, "15": 8, "16": 10, "17": 16, "18": 22, "19": 24, "20": 20}}
+  ]
+}

@@ -1,0 +1,13 @@
+# Godot
+.godot/
+*.translation
+export_presets.cfg
+
+# Web
+web/node_modules/
+web/dist/
+
+# Umum
+*.log
+.DS_Store
+Thumbs.db
