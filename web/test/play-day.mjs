@@ -7,7 +7,16 @@ import path from 'node:path';
 
 const out = process.argv[2] || 'test/out';
 fs.mkdirSync(out, {recursive: true});
-const chrome = ['C:/Program Files/Google/Chrome/Application/chrome.exe', 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe'].find((p) => fs.existsSync(p));
+const chrome = [
+	process.env.CHROME_PATH,
+	'C:/Program Files/Google/Chrome/Application/chrome.exe',
+	'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe',
+	'/usr/bin/google-chrome',
+	'/usr/bin/google-chrome-stable',
+	'/usr/bin/chromium',
+	'/usr/bin/chromium-browser',
+].find((p) => p && fs.existsSync(p));
+if (!chrome) throw new Error('Chrome tidak ditemukan. Set CHROME_PATH.');
 const PORT = 4173;
 
 const server = spawn('npx', ['vite', 'preview', '--port', String(PORT), '--strictPort'], {shell: true, stdio: 'ignore'});
@@ -92,8 +101,9 @@ try {
 } catch (e) {
 	errors.push(`[uji] ${e.message}`);
 } finally {
-	server.kill();
-	spawn('taskkill', ['/F', '/T', '/PID', String(server.pid)], {shell: true, stdio: 'ignore'});
+	if (process.platform === 'win32') spawn('taskkill', ['/F', '/T', '/PID', String(server.pid)], {shell: true, stdio: 'ignore'});
+	else server.kill('SIGTERM');
 }
 console.log('GALAT', errors.length ? '\n' + [...new Set(errors)].slice(0, 15).join('\n') : 'tidak ada');
-process.exit(0);
+// peringatan WebGL (mis. swiftshader) tidak menggagalkan uji; galat sungguhan menggagalkan
+process.exit(errors.some((e) => !e.startsWith('[warning]')) ? 1 : 0);
